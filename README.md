@@ -1,4 +1,4 @@
-# Cattaneo, Titiunik and Yu (2025, working paper, location-based methods)
+# Cattaneo, Titiunik and Yu (2025, working paper, BD Design: Location-based Methods)
 
 This work was supported in part by the National Science Foundation through grants [SES-2019432](https://www.nsf.gov/awardsearch/showAward?AWD_ID=2019432), and [SES-2241575](https://www.nsf.gov/awardsearch/showAward?AWD_ID=2241575).
 
@@ -12,7 +12,7 @@ https://rdpackages.github.io/replication
 
 - Dataset: [csv](spp.csv)
 
-- R implementation: [empirical application](CTY_2025_BDD-Location--empapp.R) | [post analysis](CTY_2025_BDD-Location--post.R)
+- R implementation: [empirical application](CTY_2025_BDD-Location.R)
 
 
 ## Reference
