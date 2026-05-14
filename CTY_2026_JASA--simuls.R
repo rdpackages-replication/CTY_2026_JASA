@@ -60,6 +60,35 @@ rd2d_package_version <- function() {
   as.character(read.dcf(desc_path, fields = "Version")[1, 1])
 }
 
+check_rd2d_package <- function() {
+  version <- rd2d_package_version()
+  if (utils::compareVersion(version, "0.1.0") < 0) {
+    stop(
+      paste(
+        "The replication scripts require rd2d version 0.1.0 or newer.",
+        sprintf("Installed rd2d version: %s.", version),
+        "Install or update rd2d from CRAN before running this script."
+      ),
+      call. = FALSE
+    )
+  }
+
+  missing_args <- setdiff(c("params.other", "params.cov", "bwparam"), names(formals(rd2d::rd2d)))
+  if (length(missing_args) > 0) {
+    stop(
+      paste(
+        "The installed rd2d package does not match the replication API.",
+        "Install or update rd2d from CRAN before running this script.",
+        "Missing rd2d() argument(s):",
+        paste(missing_args, collapse = ", ")
+      ),
+      call. = FALSE
+    )
+  }
+
+  cat(sprintf("Using rd2d version: %s\n", version))
+}
+
 clean_output_dir <- function() {
   old_files <- list.files(output_dir, pattern = "^simuls_.*\\.csv$", full.names = TRUE)
   if (length(old_files) > 0) unlink(old_files)
@@ -592,6 +621,7 @@ run_simulations <- function(m, num_workers) {
 
 ################################### Run ########################################
 
+check_rd2d_package()
 set.seed(3)
 clean_output_dir()
 

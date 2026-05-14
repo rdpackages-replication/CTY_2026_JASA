@@ -70,6 +70,18 @@ rd2d_package_version <- function() {
 check_rd2d_package <- function() {
   # Fail early if R is loading an older installed build rather than the current
   # local API used by this empirical script.
+  version <- rd2d_package_version()
+  if (utils::compareVersion(version, "0.1.0") < 0) {
+    stop(
+      paste(
+        "The replication scripts require rd2d version 0.1.0 or newer.",
+        sprintf("Installed rd2d version: %s.", version),
+        "Install or update rd2d from CRAN before running this script."
+      ),
+      call. = FALSE
+    )
+  }
+
   missing_args <- setdiff(c("params.other", "params.cov", "bwparam"), names(formals(rd2d::rd2d)))
   if (length(missing_args) > 0) {
     stop(
@@ -83,7 +95,7 @@ check_rd2d_package <- function() {
     )
   }
 
-  cat(sprintf("Using rd2d version: %s\n", rd2d_package_version()))
+  cat(sprintf("Using rd2d version: %s\n", version))
 }
 
 ################################## Setup #######################################

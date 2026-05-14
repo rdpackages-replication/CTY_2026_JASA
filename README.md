@@ -55,13 +55,21 @@ These generated folders are intentionally ignored by Git.
 
 ## Requirements
 
-The scripts are written for R and require `rd2d` version 0.1.0 or newer, with
-support for `params.other`, `params.cov`, and `summary(..., cbands = ...)`.
-Install the released package from CRAN before running the replication scripts:
+The scripts are written for R and require `rd2d` version 0.1.0 or newer. This
+is the CRAN release that supports `params.other`, `params.cov`, `bwparam`, and
+`summary(..., cbands = ...)`. Install or update the released package from CRAN
+before running the replication scripts:
 
 ```r
 install.packages("rd2d")
 library(rd2d)
+```
+
+If your R installation offers an older binary build, install the CRAN source
+release instead:
+
+```r
+install.packages("rd2d", type = "source")
 ```
 
 ## Replication
