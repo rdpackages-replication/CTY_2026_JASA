@@ -5,11 +5,7 @@ Inference in Boundary Discontinuity Designs: Location-Based Methods."
 
 This repository contains the empirical application and simulation scripts for
 the location-based boundary discontinuity design analysis. The computations use
-the `rd2d` package for R and Python.
-
-## Website
-
-https://rdpackages.github.io/replication
+the `rd2d` package for R, Python, and Stata.
 
 ## Data
 
@@ -29,26 +25,41 @@ The analysis dataset is [`spp.csv`](spp.csv). The scripts expect these columns:
 - `spadies_any`
 - `icfes_educm1`
 
-## Repository Layout
+## Empirical Application (Python)
 
-- [`CTY_2026_JASA--empapp.R`](CTY_2026_JASA--empapp.R): runs the R empirical
-  application and writes CSV outputs to `output/`.
 - [`CTY_2026_JASA--empapp.py`](CTY_2026_JASA--empapp.py): runs the Python
   empirical application and writes CSV outputs to `output/`.
 - [`CTY_2026_JASA--empapp_tables.py`](CTY_2026_JASA--empapp_tables.py): converts
   Python empirical CSV outputs into LaTeX table fragments in `tables/`.
 - [`CTY_2026_JASA--empapp_figures.py`](CTY_2026_JASA--empapp_figures.py):
   converts Python empirical CSV outputs into figures in `figures/`.
+
+## Empirical Application (R)
+
+- [`CTY_2026_JASA--empapp.R`](CTY_2026_JASA--empapp.R): runs the R empirical
+  application and writes CSV outputs to `output/`.
 - [`CTY_2026_JASA--empapp_tables.R`](CTY_2026_JASA--empapp_tables.R): converts
   empirical CSV outputs into LaTeX table fragments in `tables/`.
 - [`CTY_2026_JASA--empapp_figures.R`](CTY_2026_JASA--empapp_figures.R):
   converts empirical CSV outputs into figures in `figures/`.
+
+## Empirical Application (Stata)
+
+- [`CTY_2026_JASA--empapp.do`](CTY_2026_JASA--empapp.do): runs the Stata empirical
+  application and writes CSV outputs to `output/`.
+- [`CTY_2026_JASA--empapp_tables.do`](CTY_2026_JASA--empapp_tables.do): converts
+  Stata empirical CSV outputs into LaTeX table fragments in `tables/`.
+- [`CTY_2026_JASA--empapp_figures.do`](CTY_2026_JASA--empapp_figures.do): converts
+  Stata empirical CSV outputs into figures in `figures/`.
+
+## Simulations (R)
+
 - [`CTY_2026_JASA--simuls.R`](CTY_2026_JASA--simuls.R): runs the simulation
   study and writes raw simulation outputs to `output/`.
 - [`CTY_2026_JASA--simuls_tables.R`](CTY_2026_JASA--simuls_tables.R): converts
   simulation outputs into LaTeX table fragments in `tables/`.
-- [`spp.csv`](spp.csv): SPP data used by the empirical application and
-  simulation design.
+
+## Folders
 
 Generated artifacts are reproducible from the scripts. Three local folders are
 required:
@@ -77,6 +88,10 @@ package:
 python -m pip install rd2d
 ```
 
+The Stata empirical scripts require Stata 16 or newer and the Stata `rd2d`
+package. For local development before installation, set `RD2D_STATA_PATH` to
+the package `stata/` folder.
+
 ## Replication
 
 To replicate the empirical application with R:
@@ -94,6 +109,17 @@ python CTY_2026_JASA--empapp.py
 python CTY_2026_JASA--empapp_tables.py
 python CTY_2026_JASA--empapp_figures.py
 ```
+
+To replicate the empirical application with Stata:
+
+```sh
+StataMP-64 /e do CTY_2026_JASA--empapp.do
+StataMP-64 /e do CTY_2026_JASA--empapp_tables.do
+StataMP-64 /e do CTY_2026_JASA--empapp_figures.do
+```
+
+For cross-language numerical checks, set `RD2D_REFERENCE_OUTPUT` to an R
+or Python output folder so Stata uses the same bandwidths.
 
 To replicate the simulation study:
 
@@ -155,4 +181,3 @@ grants [SES-2019432](https://www.nsf.gov/awardsearch/showAward?AWD_ID=2019432),
 [SES-2342226](https://www.nsf.gov/awardsearch/showAward?AWD_ID=2342226), and by
 the National Institute for Food and Agriculture through grant
 [2024-67023-42704](https://www.nifa.usda.gov/data).
-
