@@ -1,0 +1,33 @@
+# R session files
+.Rhistory
+.RData
+.Ruserdata
+.Rproj.user/
+
+# R build/check outputs
+*.Rcheck/
+*.tar.gz
+*.tgz
+*.Rout
+
+# Local package/library state
+renv/library/
+renv/staging/
+.r-lib*/
+
+# Generated logs and expensive raw simulation products
+figures/
+output/
+tables/
+output/*_stdout.log
+output/*_stderr.log
+output/*_time.txt
+output/simuls_raw_rep*.csv
+
+# Stata/Mata compiled artifacts
+*.mo
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+*.swp
